@@ -2,7 +2,6 @@ package modbusd
 
 import (
 	"fmt"
-	"github.com/IMQS/modprobe/config"
 	"strconv"
 	"strings"
 	"time"
@@ -25,7 +24,7 @@ type Client struct {
 }
 
 // NewClient creates an instance of the Client class
-func NewClient(u *config.URL) (*Client, error) {
+func NewClient(u *URL) (*Client, error) {
 	var err error
 	var transport Transport
 	var protocol Protocol
@@ -112,7 +111,7 @@ func (c *Client) do(request *ADU) (*ADU, error) {
 }
 
 // Request connects to the modbus device, fires of a request and interprets the result
-func (c *Client) Request(url *config.URL) (*ADU, error) {
+func (c *Client) Request(url *URL) (*ADU, error) {
 	var err error
 	if c == nil {
 		return nil, fmt.Errorf("Illegal client")
@@ -132,7 +131,7 @@ func (c *Client) Request(url *config.URL) (*ADU, error) {
 
 }
 
-func (c *Client) Read(url *config.URL) (*ADU, error) {
+func (c *Client) Read(url *URL) (*ADU, error) {
 	var err error
 	if c == nil {
 		return nil, fmt.Errorf("Illegal client")

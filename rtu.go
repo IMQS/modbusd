@@ -1,7 +1,5 @@
 package modbusd
 
-import ()
-
 const (
 	LRTU Length = 1
 )
