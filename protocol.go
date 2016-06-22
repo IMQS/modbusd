@@ -227,6 +227,7 @@ func (p *ProtocolBase) handleEOF(adu *ADU, response []byte, start Section, cnt *
 func (p *ProtocolBase) handleMBAP(adu *ADU, response []byte, cnt *byte, section *Section, element *Element) error {
 	var exitElement = false
 	*element = ETRANSID
+	adu.Hdr = make([]byte, LMBAP)
 	for {
 		// Parse the various elements from the MBAP header
 		switch *element {
@@ -355,7 +356,7 @@ func (p *ProtocolBase) handlePDU(adu *ADU, response []byte, cnt *byte, start *Se
 			// Set the next element expected in the response according to the type of protocol employed
 			switch *start {
 			case SMBAP:
-				*element = EDATA
+				*element = ELENGTH
 			case SRTU:
 				*element = ELENGTH
 			case SASCII:
